@@ -10,6 +10,8 @@ gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
+# 追加
+gem 'mysql2', '~> 0.5.3'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -31,6 +33,7 @@ gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
 gem "sassc-rails" #コメントアウトをなくす
 
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -49,9 +52,13 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# Gemfile
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mswin mswin64 mingw x64_mingw]
+  
+  gem 'rspec-rails', '~> 5.0'
+  gem 'capybara', '~> 3.36'  # ここでcapybaraを定義
 end
 
 group :development do
@@ -69,6 +76,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
   gem "selenium-webdriver"
 end
+
