@@ -4,7 +4,6 @@
     <title>App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <style>
@@ -18,55 +17,25 @@
       }
     </style>
   </head>
-
   <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm justify-content-between">
       <h5 class="my-0 mr-md-auto font-weight-normal">HUNTER×HUNTER character lists</h5>
+      <a href="<%= new_list_path %>" class="btn btn-primary my-2 my-sm-0">Add new character</a>
     </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <!-- 画像付きリンクの追加 -->
     <div class="container mt-5">
       <div class="row">
-        <% image_urls = [
-          'https://dengekionline.com/images/4PYD/1qaf/8H4Y/3So9/CkBqflznRpCSV2zzzF2I8SoCseBkTHSB8xNPLEX2v7pZ2J4N66pUQMwhCmpBrGYuILpSNaIzAwvaXVXO_main.jpg',
-          'https://www.chibakan-yachiyo.net/wp-content/uploads/fig-kirua-i.jpg',
-          'https://image2.b-ch.com/ttl2/3154/3154047a.jpg?impolicy=fitin&ww=480&hh=270" class="img-fluid',
-          'https://animemiru.jp/wp-content/uploads/2018/05/rr01-1-480x271.jpg',
-          'https://renote.net/files/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMDRQTHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5af99d4feffb6731bb72d693ec351d90a972839e/irumi.jpg',
-          'https://pbs.twimg.com/media/EODWorVWsAAvbbt.jpg',
-          'https://image2.b-ch.com/ttl2/3154/3154041a.jpg?impolicy=fitin&ww=640&hh=380',
-          'https://e0.pxfuel.com/wallpapers/52/248/desktop-wallpaper-anime-hunter-x-hunter-hisoka.jpg',
-          'https://res.cloudinary.com/macm/image/upload/c_fill,h_400,w_700/z3npmom7hm6jz3s5rk90.jpg',
-          'https://image2.b-ch.com/ttl2/3154/3154028a.jpg?impolicy=fitin&ww=640&hh=380" class="img-fluid',
-          'https://ipcprlegislative.org/wp-content/uploads/2022/01/zin.jpg',
-          'https://renote.net/files/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd2JIZ2c9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--4d48dc2f3d610ae9581b613be6a3bba031d218e9/FC62056C-3348-4006-BE72-5462D189E683.jpeg',
-          'https://huncyclopedia.com/wp-content/uploads/574-720x405.jpg',
-          'https://huncyclopedia.com/wp-content/uploads/117-720x407.jpg',
-          'https://huncyclopedia.com/wp-content/uploads/65.jpg',
-          'https://huncyclopedia.com/wp-content/uploads/426-720x405.jpg',
-          'https://meigenkakugen.net/wp-content/uploads/razor.jpg',
-          'https://image2.b-ch.com/ttl2/3154/3154051a.jpg?impolicy=fitin&ww=640&hh=380',
-        ] %>
-
-        <% link_urls = [
-          'https://link1.com',
-          'https://link2.com',
-          'https://link3.com',
-          'https://link4.com',
-          'https://link5.com',
-          'https://link6.com',
-          'https://link7.com',
-          'https://link8.com'
-        ] %>
-
-        <% image_urls.each_with_index do |url, i| %>
+        <% List.all.each do |list| %>
           <div class="col-md-6 mb-4">
-            <% random_link = link_urls.sample %> <!-- ランダムなリンクを選択 -->
-            <a href="<%= random_link %>" target="_blank" class="image-container">
-              <img src="<%= url %>" alt="Image <%= i + 1 %>">
-            </a>
+            <div class="image-container">
+              <% if list.image.attached? %>
+                <%= image_tag list.image, class: "img-fluid", alt: "Image #{list.title}" %>
+              <% else %>
+                <p>No image available for <%= list.title %></p>
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>
