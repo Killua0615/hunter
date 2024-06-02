@@ -27,19 +27,24 @@
 
     <div class="container mt-5">
       <div class="row">
-        <% List.all.each do |list| %>
+        <% Character.all.each do |character| %>
           <div class="col-md-6 mb-4">
             <div class="image-container">
-              <% if list.image.attached? %>
-                <%= image_tag list.image, class: "img-fluid", alt: "Image #{list.title}" %>
+              <% if character.image.attached? %>
+                <%= link_to character_path(character) do %>
+                  <%= image_tag rails_blob_url(character.image), class: "img-fluid", alt: "Image #{character.name}" %>
+                <% end %>
               <% else %>
-                <p>No image available for <%= list.title %></p>
+                <p>No image available for <%= character.name %></p>
               <% end %>
             </div>
           </div>
         <% end %>
       </div>
     </div>
+  
+  
+  
 
     <%= yield %>
   </body>

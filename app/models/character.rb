@@ -5,5 +5,5 @@ class Character < ApplicationRecord
     has_many :nen_abilities, through: :nen_ability_relations
     has_many :episode_relations, foreign_key: 'CharacterID'
     has_many :episodes, through: :episode_relations
-    has_many :image
+    has_one_attached :image
 end

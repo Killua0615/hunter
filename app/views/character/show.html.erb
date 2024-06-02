@@ -1,0 +1,8 @@
+<h1><%= @character.name %></h1>
+<p>Debut Episode: <%= @character.DebutEpisode %></p>
+<p>Affiliation: <%= @character.affiliation.Affiliation %></p>
+<p>Aura Type: <%= @character.nen_ability.AuraType %></p>
+<p>Nen Ability: <%= @character.nen_ability.NenAbilityName %></p>
+<p>Episode Name: <%= @character.episode.EpisodeName %></p>
+
+<%= image_tag @character.image if @character.image.attached? %>

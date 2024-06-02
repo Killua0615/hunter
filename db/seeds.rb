@@ -133,24 +133,43 @@ EpisodeRelation.create([
 ])
 
 # Picture データの追加
-Picture.create([
-  { image: URI.open('https://dengekionline.com/images/4PYD/1qaf/8H4Y/3So9/CkBqflznRpCSV2zzzF2I8SoCseBkTHSB8xNPLEX2v7pZ2J4N66pUQMwhCmpBrGYuILpSNaIzAwvaXVXO_main.jpg'), character_id: 1 },
-  { image: URI.open('https://www.chibakan-yachiyo.net/wp-content/uploads/fig-kirua-i.jpg'), character_id: 2 },
-  { image: URI.open('https://image2.b-ch.com/ttl2/3154/3154047a.jpg?impolicy=fitin&ww=480&hh=270'), character_id: 3 },
-  { image: URI.open('https://animemiru.jp/wp-content/uploads/2018/05/rr01-1-480x271.jpg'), character_id: 4 },
-  { image: URI.open('https://renote.net/files/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMDRQTHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5af99d4feffb6731bb72d693ec351d90a972839e/irumi.jpg'), character_id: 5 },
-  { image: URI.open('https://pbs.twimg.com/media/EODWorVWsAAvbbt.jpg'), character_id: 6 },
-  { image: URI.open('https://image2.b-ch.com/ttl2/3154/3154041a.jpg?impolicy=fitin&ww=640&hh=380'), character_id: 7 },
-  { image: URI.open('https://e0.pxfuel.com/wallpapers/52/248/desktop-wallpaper-anime-hunter-x-hunter-hisoka.jpg'), character_id: 8 },
-  { image: URI.open('https://res.cloudinary.com/macm/image/upload/c_fill,h_400,w_700/z3npmom7hm6jz3s5rk90.jpg'), character_id: 9 },
-  { image: URI.open('https://image2.b-ch.com/ttl2/3154/3154028a.jpg?impolicy=fitin&ww=640&hh=380'), character_id: 10 },
-  { image: URI.open('https://ipcprlegislative.org/wp-content/uploads/2022/01/zin.jpg'), character_id: 11 },
-  { image: URI.open('https://renote.net/files/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd2JIZ2c9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--4d48dc2f3d610ae9581b613be6a3bba031d218e9/FC62056C-3348-4006-BE72-5462D189E683.jpeg'), character_id: 12 },
-  { image: URI.open('https://huncyclopedia.com/wp-content/uploads/574-720x405.jpg'), character_id: 13 },
-  { image: URI.open('https://huncyclopedia.com/wp-content/uploads/117-720x407.jpg'), character_id: 14 },
-  { image: URI.open('https://huncyclopedia.com/wp-content/uploads/65.jpg'), character_id: 15 },
-  { image: URI.open('https://huncyclopedia.com/wp-content/uploads/426-720x405.jpg'), character_id: 16 },
-  { image: URI.open('https://meigenkakugen.net/wp-content/uploads/razor.jpg'), character_id: 17 },
-  { image: URI.open('https://image2.b-ch.com/ttl2/3154/3154051a.jpg?impolicy=fitin&ww=640&hh=380'), character_id: 18 },
-])
-
+Character.find_each do |character|
+  case character.characterID
+  when 1
+    character.image.attach(io: URI.open('https://dengekionline.com/images/4PYD/1qaf/8H4Y/3So9/CkBqflznRpCSV2zzzF2I8SoCseBkTHSB8xNPLEX2v7pZ2J4N66pUQMwhCmpBrGYuILpSNaIzAwvaXVXO_main.jpg'), filename: 'gon.jpg')
+  when 2
+    character.image.attach(io: URI.open('https://www.chibakan-yachiyo.net/wp-content/uploads/fig-kirua-i.jpg'), filename: 'killua.jpg')
+  when 3
+    character.image.attach(io: URI.open('https://image2.b-ch.com/ttl2/3154/3154047a.jpg?impolicy=fitin&ww=480&hh=270'), filename: 'kurapika.jpg')
+  when 4
+    character.image.attach(io: URI.open('https://animemiru.jp/wp-content/uploads/2018/05/rr01-1-480x271.jpg'), filename: 'leorio.jpg')
+  when 5
+    character.image.attach(io: URI.open('https://e0.pxfuel.com/wallpapers/52/248/desktop-wallpaper-anime-hunter-x-hunter-hisoka.jpg'), filename: 'hisoka.jpg')
+  when 6
+    character.image.attach(io: URI.open('https://pbs.twimg.com/media/EODWorVWsAAvbbt.jpg'), filename: 'kaito.jpg')
+  when 7
+    character.image.attach(io: URI.open('https://renote.net/files/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMDRQTHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5af99d4feffb6731bb72d693ec351d90a972839e/irumi.jpg'), filename: 'irumi.jpg')
+  when 8
+    character.image.attach(io: URI.open('https://image2.b-ch.com/ttl2/3154/3154028a.jpg?impolicy=fitin&ww=640&hh=380'), filename: 'wing.jpg')
+  when 9
+    character.image.attach(io: URI.open('https://huncyclopedia.com/wp-content/uploads/574-720x405.jpg'), filename: 'zusi.jpg')
+  when 10
+    character.image.attach(io: URI.open('https://huncyclopedia.com/wp-content/uploads/117-720x407.jpg'), filename: 'bisk.jpg')
+  when 11
+    character.image.attach(io: URI.open('https://huncyclopedia.com/wp-content/uploads/65.jpg'), filename: 'netero.jpg')
+  when 12
+    character.image.attach(io: URI.open('https://image2.b-ch.com/ttl2/3154/3154041a.jpg?impolicy=fitin&ww=640&hh=380'), filename: 'neon.jpg')
+  when 13
+    character.image.attach(io: URI.open('https://res.cloudinary.com/macm/image/upload/c_fill,h_400,w_700/z3npmom7hm6jz3s5rk90.jpg'), filename: 'senritsu.jpg')
+  when 14
+    character.image.attach(io: URI.open('https://huncyclopedia.com/wp-content/uploads/426-720x405.jpg'), filename: 'nennjyu.jpg')
+  when 15
+    character.image.attach(io: URI.open('https://meigenkakugen.net/wp-content/uploads/razor.jpg'), filename: 'ruyzer.jpg')
+  when 16
+    character.image.attach(io: URI.open('https://ipcprlegislative.org/wp-content/uploads/2022/01/zin.jpg'), filename: 'gine.jpg')
+  when 17
+    character.image.attach(io: URI.open('https://renote.net/files/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd2JIZ2c9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--4d48dc2f3d610ae9581b613be6a3bba031d218e9/FC62056C-3348-4006-BE72-5462D189E683.jpeg'), filename: 'gensrue.jpg')
+  when 18
+    character.image.attach(io: URI.open('https://image2.b-ch.com/ttl2/3154/3154051a.jpg?impolicy=fitin&ww=640&hh=380'), filename: 'kuroro.jpg')
+  end
+end
