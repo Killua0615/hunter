@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Character Detail</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      .character-details {
+        text-align: center;
+      }
+      .character-details img {
+        display: block;
+        margin: 0 auto;
+        max-width: 500px; /* 任意の最大幅に調整 */
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5 character-details">
+      <%= image_tag @character.image if @character.image.attached? %>
+      <h1><%= @character.name %></h1>
+      <p>Debut Episode: <%= @character.DebutEpisode %></p>
+      <p>Affiliation: <%= @character.affiliation.Affiliation %></p>
+
+      <% @character.nen_abilities.each do |nen_ability| %>
+        <p>Aura Type: <%= nen_ability.AuraType %></p>
+        <p>Nen Ability: <%= nen_ability.NenAbilityName %></p>
+      <% end %>
+
+      <% @character.episodes.each do |episode| %>
+        <p>Episode Name: <%= episode.EpisodeName %></p>
+      <% end %>
+
+      
+    </div>
+  </body>
+</html>

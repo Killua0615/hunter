@@ -50,12 +50,12 @@ Character.create([
 
 # NenAbility データの追加
 NenAbility.create([
-  { NenAbilityID: 1, NenAbilityName: "単純一途", AuraType: "強化系" },
-  { NenAbilityID: 2, NenAbilityName: "気まぐれ", AuraType: "変化系" },
-  { NenAbilityID: 3, NenAbilityName: "神経質", AuraType: "具現化系" },
-  { NenAbilityID: 4, NenAbilityName: "個人主義者", AuraType: "特質系" },
-  { NenAbilityID: 5, NenAbilityName: "大雑把", AuraType: "放出系" },
-  { NenAbilityID: 6, NenAbilityName: "マイペース", AuraType: "操作系" }
+  { NenAbilityID: 1, AuraType: "強化系", NenAbilityName: "単純一途" },
+  { NenAbilityID: 2, AuraType: "変化系", NenAbilityName: "気まぐれ" },
+  { NenAbilityID: 3, AuraType: "具現化系", NenAbilityName: "神経質" },
+  { NenAbilityID: 4, AuraType: "特質系", NenAbilityName: "個人主義者" },
+  { NenAbilityID: 5, AuraType: "放出系", NenAbilityName: "大雑把" },
+  { NenAbilityID: 6, AuraType: "操作系", NenAbilityName: "マイペース" }
 ])
 
 # NenAbilityRelation データの追加

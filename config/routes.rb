@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'lists#index'
-  resources :lists, only: [:index, :new, :create]
+  root 'characters#index'
+  # resources :lists
   resources :characters
 
 end

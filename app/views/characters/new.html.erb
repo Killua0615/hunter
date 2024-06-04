@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h1 class="mt-4 mb-4">New List</h1>
+      <%= form_with(model: @list, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+        <div class="mb-3">
+          <%= form.label :image, class: 'form-label' %>
+          <%= form.file_field :image, class: 'form-control', required: true, id: 'image-input' %>
+          <div class="invalid-feedback">
+            Please upload an image.
+          </div>
+          <div class="mt-3">
+            <img id="image-preview" src="#" alt="Image Preview" style="display: none; max-width: 100%; height: auto;" />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :name, class: 'form-label' %>
+          <%= form.text_field :name, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Please provide a name.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :debut_episode, class: 'form-label' %>
+          <%= form.text_field :debut_episode, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Please provide a debut episode.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :affiliation_id, class: 'form-label' %>
+          <%= form.collection_select :affiliation_id, @affiliations, :id, :Affiliation, {}, { class: 'form-control', required: true } %>
+          <div class="invalid-feedback">
+            Please select an affiliation.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :nen_ability_ids, "Nen Abilities", class: 'form-label' %>
+          <%= form.collection_select :nen_ability_ids, @nen_abilities, :id, :AuraType, {}, { class: 'form-control', required: true, name: "list[nen_ability_ids][]" } %>
+          <div class="invalid-feedback">
+            Please select nen abilities.
+          </div>
+        </div>
+
+        <div id="episode-fields-container">
+          <div class="mb-3">
+            <%= form.label :episode_ids, "Episodes", class: 'form-label' %>
+            <%= form.collection_select :episode_ids, @episodes, :id, :EpisodeName, {}, { class: 'form-control', required: true, name: "list[episode_ids][]" } %>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <button type="button" class="btn btn-secondary" id="add-episode-field">Add Another Episode</button>
+        </div>
+
+        <div class="actions">
+          <%= form.submit 'Create List', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const addEpisodeButton = document.getElementById('add-episode-field');
+    const episodeFieldsContainer = document.getElementById('episode-fields-container');
+    const imageInput = document.getElementById('image-input');
+    const imagePreview = document.getElementById('image-preview');
+
+    addEpisodeButton.addEventListener('click', function() {
+      const newEpisodeField = document.createElement('div');
+      newEpisodeField.classList.add('mb-3');
+      newEpisodeField.innerHTML = `
+        <label class='form-label'>Episode</label>
+        <select name='list[episode_ids][]' class='form-control' required multiple>
+          <% @episodes.each do |episode| %>
+            <option value='<%= episode.id %>'><%= episode.EpisodeName %></option>
+          <% end %>
+        </select>
+      `;
+      episodeFieldsContainer.appendChild(newEpisodeField);
+    });
+
+    imageInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          imagePreview.src = e.target.result;
+          imagePreview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        imagePreview.style.display = 'none';
+      }
+    });
+  });
+</script>
