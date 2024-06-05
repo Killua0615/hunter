@@ -9,12 +9,14 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(character_params)
     if @character.save
-      redirect_to character_url, notice: 'Character was successfully created.'
+      if params[:character][:image].present?
+        @character.image.attach(params[:character][:image])
+      end
+      redirect_to @character, notice: 'Character was successfully created.'
     else
       @affiliations = Affiliation.all
       @nen_abilities = NenAbility.all
       @episodes = Episode.all
-      flash.now[:alert] = @character.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -26,6 +28,6 @@ class CharactersController < ApplicationController
   private
 
   def character_params
-    params.require(:character).permit(:name, :debut_episode, :affiliation_id, :image, nen_ability_ids: [], episode_ids: [])
+    params.require(:character).permit(:name, :DebutEpisode, :AffiliationID, :image, nen_ability_ids: [], episode_ids: [])
   end
 end
