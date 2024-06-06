@@ -9,9 +9,6 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(character_params)
     if @character.save
-      if params[:character][:image].present?
-        @character.image.attach(params[:character][:image])
-      end
       redirect_to @character, notice: 'Character was successfully created.'
     else
       @affiliations = Affiliation.all
@@ -21,13 +18,9 @@ class CharactersController < ApplicationController
     end
   end
 
-  def show
-    @character = Character.find(params[:id])
-  end
-
   private
 
   def character_params
-    params.require(:character).permit(:name, :DebutEpisode, :AffiliationID, :image, nen_ability_ids: [], episode_ids: [])
+    params.require(:character).permit(:name, :DebutEpisode, :AffiliationID, :image, :nen_ability_id, episode_ids: [])
   end
 end

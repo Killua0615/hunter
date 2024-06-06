@@ -40,22 +40,28 @@
         </div>
 
         <div class="mb-3">
-          <%= form.label :nen_ability_ids, "Nen Abilities", class: 'form-label' %>
-          <%= form.collection_select :nen_ability_ids, @nen_abilities, :id, :AuraType, {}, { class: 'form-control', required: true } %>
+          <%= form.label :nen_ability_id, "Nen Abilities", class: 'form-label' %>
+          <% @nen_abilities.each do |ability| %>
+            <div class="form-check">
+              <%= form.radio_button :nen_ability_id, ability.id, { class: 'form-check-input' } %>
+              <%= form.label :nen_ability_id, ability.AuraType, class: 'form-check-label' %>
+            </div>
+          <% end %>
           <div class="invalid-feedback">
-            Please select nen abilities.
+            Please select a nen ability.
           </div>
         </div>
 
-        <div id="episode-fields-container">
-          <div class="mb-3">
-            <%= form.label :episode_ids, "Episodes", class: 'form-label' %>
-            <%= form.collection_select :episode_ids, @episodes, :id, :EpisodeName, {}, { class: 'form-control', required: true } %>
-          </div>
-        </div>
-        
         <div class="mb-3">
-          <button type="button" class="btn btn-secondary" id="add-episode-field">Add Another Episode</button>
+          <%= form.label :episode_ids, "Episodes", class: 'form-label' %>
+          <div class="form-check">
+            <% @episodes.each do |episode| %>
+              <div class="form-check">
+                <%= form.check_box :episode_ids, { multiple: true, class: 'form-check-input' }, episode.id, nil %>
+                <%= form.label :episode_ids, episode.EpisodeName, class: 'form-check-label' %>
+              </div>
+            <% end %>
+          </div>
         </div>
 
         <div class="actions">
@@ -68,24 +74,8 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const addEpisodeButton = document.getElementById('add-episode-field');
-    const episodeFieldsContainer = document.getElementById('episode-fields-container');
     const imageInput = document.getElementById('image-input');
     const imagePreview = document.getElementById('image-preview');
-
-    addEpisodeButton.addEventListener('click', function() {
-      const newEpisodeField = document.createElement('div');
-      newEpisodeField.classList.add('mb-3');
-      newEpisodeField.innerHTML = `
-        <label class='form-label'>Episode</label>
-        <select name='character[episode_ids][]' class='form-control' required multiple>
-          <% @episodes.each do |episode| %>
-            <option value='<%= episode.id %>'><%= episode.EpisodeName %></option>
-          <% end %>
-        </select>
-      `;
-      episodeFieldsContainer.appendChild(newEpisodeField);
-    });
 
     imageInput.addEventListener('change', function(event) {
       const file = event.target.files[0];
