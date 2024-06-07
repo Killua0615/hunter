@@ -59,6 +59,8 @@ group :development, :test do
   
   gem 'rspec-rails', '~> 5.0'
   gem 'capybara', '~> 3.36'  # ここでcapybaraを定義
+
+  gem "factory_bot_rails"
 end
 
 group :development do
