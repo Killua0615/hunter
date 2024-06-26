@@ -21,7 +21,7 @@
   </head>
   <body>
     <div class="container mt-5 character-details">
-      <%= image_tag @character.image if @character.image.attached? %>
+    <%= image_tag @character.image if @character.image.attached? %>
       <h1><%= @character.name %></h1>
       <p>Debut Episode: <%= @character.DebutEpisode %></p>
       <p>Affiliation: <%= @character.affiliation.Affiliation %></p>
