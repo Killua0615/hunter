@@ -12,10 +12,6 @@
 ![スクリーンショット 2024-06-26 21.04.51.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3733846/0d4b8759-458c-f1d8-8d03-6a476e510815.png)
 
 
-Githubリポジトリ
-
-https://github.com/Killua0615/hunter
-
 ## 技術構成
 ### 使用技術
 | カテゴリ	 |     技術 | 
