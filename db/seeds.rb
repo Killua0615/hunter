@@ -1,3 +1,5 @@
+require 'open-uri'
+
 # Clear existing data (optional, for idempotency)
 Character.delete_all
 Affiliation.delete_all
@@ -9,8 +11,9 @@ EpisodeRelation.delete_all
 # Reset primary key sequences (optional, for idempotency)
 tables = %w(characters affiliations nen_abilities nen_ability_relations episodes episode_relations)
 tables.each do |table|
-  ActiveRecord::Base.connection.execute("ALTER TABLE #{table} AUTO_INCREMENT = 1")
+  ActiveRecord::Base.connection.execute("SELECT setval(pg_get_serial_sequence('#{table}', 'id'), COALESCE(MAX(id)+1, 1), false) FROM #{table}")
 end
+
 
 # Affiliation データの追加
 Affiliation.create([
