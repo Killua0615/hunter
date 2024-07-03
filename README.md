@@ -21,7 +21,7 @@ https://evening-oasis-56233-285d435ecde1.herokuapp.com/
 |:-----------|:-----------|
 | フロントエンド     | HTML, CSS, JavaScript, ERB| 
 | バックエンド     | Ruby 3.1.2, Rails 7.1.3   |       
-| データベース   | MySQL      |        
+| データベース   | PostgreSQL     |        
 
 ### ER図
 ![スクリーンショット 2024-06-26 21.17.22.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3733846/6c71e47e-63f4-5211-c279-69f757492bc7.png)
