@@ -1,6 +1,5 @@
 ## はじめまして
-オランダでコンピューターサイエンスのブートキャンプに参加したのをきっかけにエンジニアに興味を持ち、現在は独学でRuby on Railsの学習しています。
-パーフェクトRuby on Railsという参考書を一通り学習したので、大好きなHunter×Hunterのキャラクターリストを作りました。
+独学でRuby on Railsの学習しています。パーフェクトRuby on Railsという参考書を一通り学習したので、大好きなHunter×Hunterのキャラクターリストを作りました。
 
 サービスURL: 
 https://evening-oasis-56233-285d435ecde1.herokuapp.com/
